@@ -7,6 +7,7 @@ This is what worked for me on OSX & Linux:
 .. code:: bash
 
     conda install -c conda-forge awscli
+    conda install -c conda-forge boto3
     
 * `Create an AWS account <https://aws.amazon.com/>`_.
 * Configure your AWS account: (Set a default region, because Textract will only work in one region. I used 'eu-west-1').
@@ -31,8 +32,6 @@ If it works, this will return a load of JSON output. If it produces an error mes
 
 
 I was most confused by the limitations imposed by the different AWS regions: If you run `aws textract` in the wrong region, it won't work. If you run textract in one region, but specify a S3 document in a different region, it won't work.
-
-The `getting started documentation <https://docs.aws.amazon.com/textract/latest/dg/setting-up.html>`_ contains a lot of instructions about IAM users and groups which didn't make much sense for scientific work from individual accounts. Fortunately, it still works if you don't bother with IAM users.
 
 
 
