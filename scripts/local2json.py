@@ -23,4 +23,4 @@ client = boto3.client('textract')
 response = client.detect_document_text(Document={'Bytes': ie})
 
 # Save the resulting JSON
-pickle.dump(response, open( "../images/%s.pkl" % args.file, "wb" ) )
+pickle.dump(response, open( "../results.pkl/%s.pkl" % args.file, "wb" ) )
