@@ -16,7 +16,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Small print" href="credits.html" />
+    <link rel="next" title="A set of sample images for testing" href="samples/samples.html" />
     <link rel="prev" title="Testing AWS Textract for weather data rescue" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -26,7 +26,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="credits.html" title="Small print"
+          <a href="samples/samples.html" title="A set of sample images for testing"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Testing AWS Textract for weather data rescue"
@@ -37,11 +37,13 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/UK_1903.png" alt="Logo"/>
+              <img class="logo" src="_static/Second_order.png" alt="Logo"/>
             </a></p>
 <h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Textract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/samples.html">A set of sample images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/samples_results.html">Running Textract on the sample images</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Small Print</a></li>
@@ -65,16 +67,17 @@
   <div class="section" id="getting-started-with-textract">
 <h1>Getting started with Textract<a class="headerlink" href="#getting-started-with-textract" title="Permalink to this headline">¶</a></h1>
 <p>This is what worked for me on OSX &amp; Linux:</p>
-<ul class="simple">
-<li>Install the <a class="reference external" href="https://aws.amazon.com/cli/">AWS command line tools</a> and the <a class="reference external" href="https://aws.amazon.com/sdk-for-python/">AWS SDK for Python (Boto3)</a>. As I already use <a class="reference external" href="https://conda.io/en/latest/">conda</a>, I found it easiest to use that. Just <cite>activate</cite> your environment of choice and then add the AWS tools to it with:</li>
-</ul>
+<ul>
+<li><p class="first">Install the <a class="reference external" href="https://aws.amazon.com/cli/">AWS command line tools</a> and the <a class="reference external" href="https://aws.amazon.com/sdk-for-python/">AWS SDK for Python (Boto3)</a>. As I already use <a class="reference external" href="https://conda.io/en/latest/">conda</a>, I found it easiest to use that. Just <cite>activate</cite> your environment of choice and then add the AWS tools to it with:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">awscli</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">boto3</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><a class="reference external" href="https://aws.amazon.com/">Create an AWS account</a>.</li>
-<li>Configure your AWS account: (Set a default region, because Textract will only work in one region. I used ‘eu-west-1’).</li>
+</li>
+<li><p class="first"><a class="reference external" href="https://aws.amazon.com/">Create an AWS account</a>.</p>
+</li>
+<li><p class="first">Configure your AWS account: (Set a default region, because Textract will only work in one region. I used ‘eu-west-1’).</p>
+</li>
 </ul>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">configure</span>
 </pre></div>
@@ -108,7 +111,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="credits.html" title="Small print"
+          <a href="samples/samples.html" title="A set of sample images for testing"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Testing AWS Textract for weather data rescue"

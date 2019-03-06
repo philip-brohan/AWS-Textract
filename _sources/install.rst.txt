@@ -4,19 +4,22 @@ Getting started with Textract
 This is what worked for me on OSX & Linux:
 
 * Install the `AWS command line tools <https://aws.amazon.com/cli/>`_ and the `AWS SDK for Python (Boto3) <https://aws.amazon.com/sdk-for-python/>`_. As I already use `conda <https://conda.io/en/latest/>`_, I found it easiest to use that. Just `activate` your environment of choice and then add the AWS tools to it with:
-.. code:: bash
+
+  .. code:: bash
 
     conda install -c conda-forge awscli
     conda install -c conda-forge boto3
     
 * `Create an AWS account <https://aws.amazon.com/>`_.
 * Configure your AWS account: (Set a default region, because Textract will only work in one region. I used 'eu-west-1').
+  
 .. code:: bash
 
     aws configure
   
 * `Sign up for the Textract preview <https://pages.awscloud.com/textract-preview.html>`_ and get accepted.
 * Configure your AWS account to use Textract:
+
 .. code:: bash
 
     aws s3 cp s3://amazon-textract-preview2/service-2.json

@@ -9,6 +9,8 @@ Our understanding of weather and climate depends fundamentally on observations, 
    :maxdepth: 2
 
    Getting started with Textract <install>
+   A set of sample images <samples/samples>
+   Running Textract on the sample images <samples/samples_results>
 
 .. toctree::
    :titlesonly:
