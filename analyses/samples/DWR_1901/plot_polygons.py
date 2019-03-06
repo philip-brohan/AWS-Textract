@@ -85,4 +85,4 @@ for block in textract['Blocks']:
     zorder=zorder+10
 
 # Draw the image
-fig.savefig('1901_DWR.png')
+fig.savefig('DWR_1901.png')
