@@ -9,3 +9,4 @@ We have millions of images that need transcribing, in many different formats - s
 
    Observatories/sample
    Second_order/sample
+   Ben_Nevis/sample

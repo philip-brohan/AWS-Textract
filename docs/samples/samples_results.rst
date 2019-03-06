@@ -7,3 +7,4 @@ Textract results for a set of sample images
 
    Observatories/polygons
    Second_order/polygons
+   Ben_Nevis/polygons
