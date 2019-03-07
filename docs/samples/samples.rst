@@ -11,5 +11,8 @@ We have millions of images that need transcribing, in many different formats - s
    Second_order/sample
    Ben_Nevis/sample
    Argentine_DWR/sample
+   IDWR/sample
    DWR_1901/sample
    DWR_1862/sample
+   Farragut/sample
+   Jeannette/sample
