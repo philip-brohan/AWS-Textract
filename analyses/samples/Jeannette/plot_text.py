@@ -15,8 +15,8 @@ import numpy
 # We're going to need the original image
 im = Image.open("../../../samples/24-118-jeannette-vol003_199.jpg")
 
-fig=Figure(figsize=((2*im.size[0]/100)*1.06,
-                    (im.size[1]/100)*1.04),
+fig=Figure(figsize=((1*im.size[0]/100)*1.04,
+                    (2*im.size[1]/100)*1.06),
        dpi=100,
        facecolor=(0.88,0.88,0.88,1),
        edgecolor=None,
@@ -24,8 +24,8 @@ fig=Figure(figsize=((2*im.size[0]/100)*1.06,
        frameon=False,
        subplotpars=None,
        tight_layout=None)
-ax_original=fig.add_axes([0.02,0.02,0.47,0.96])
-ax_result=fig.add_axes([0.51,0.02,0.47,0.96])
+ax_original=fig.add_axes([0.02,0.51,0.96,0.47])
+ax_result=fig.add_axes([0.02,0.02,0.96,0.47])
 # Matplotlib magic
 canvas=FigureCanvas(fig)
 # Turn off the axis tics
@@ -54,7 +54,7 @@ def b2t(dct):
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:
-    if 'Text' in block:
+    if 'Text' in block and 'Relationships' in block:
        # Polygon
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
@@ -69,11 +69,11 @@ for block in textract['Blocks']:
         txt_centroid=b2t(block['Geometry']['BoundingBox'])
         angle=0
         if (block['Geometry']['BoundingBox']['Height'] >
-           block['Geometry']['BoundingBox']['Width']):
+            block['Geometry']['BoundingBox']['Width']*2):
             angle=90
         ax_result.text(txt_centroid[0],txt_centroid[1],
                        block['Text'],
-                       fontsize=32,
+                       fontsize=28,
                        verticalalignment='center',
                        horizontalalignment='center',
                        rotation=angle)

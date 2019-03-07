@@ -54,7 +54,7 @@ def b2t(dct):
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:
-    if 'Text' in block:
+    if 'Text' in block and 'Relationships' in block:
        # Polygon
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
@@ -69,11 +69,11 @@ for block in textract['Blocks']:
         txt_centroid=b2t(block['Geometry']['BoundingBox'])
         angle=0
         if (block['Geometry']['BoundingBox']['Height'] >
-           block['Geometry']['BoundingBox']['Width']):
+            block['Geometry']['BoundingBox']['Width']*2):
             angle=90
         ax_result.text(txt_centroid[0],txt_centroid[1],
                        block['Text'],
-                       fontsize=24,
+                       fontsize=28,
                        verticalalignment='center',
                        horizontalalignment='center',
                        rotation=angle)
