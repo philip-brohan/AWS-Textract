@@ -13,11 +13,8 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Script to plot comparison figure" href="plot_polygons.html" />
-    <link rel="prev" title="Analysis of the Weatherrescue Ben Nevis sample" href="polygons.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -25,15 +22,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="plot_polygons.html" title="Script to plot comparison figure"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="polygons.html" title="Analysis of the Weatherrescue Ben Nevis sample"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../samples_results.html" >Textract results for a set of sample images</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="polygons.html" accesskey="U">Analysis of the Weatherrescue Ben Nevis sample</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -42,15 +31,10 @@
               <img class="logo" src="../../_static/Second_order.png" alt="Logo"/>
             </a></p>
 <h3><a href="../../index.html">Table of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Getting started with Textract</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples.html">A set of sample images</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../samples_results.html">Running Textract on the sample images</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../Observatories/polygons.html">Analysis of the Observatories sample</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Second_order/polygons.html">Analysis of the Second Order Stations sample</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="polygons.html">Analysis of the Weatherrescue Ben Nevis sample</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../samples_results.html">Running Textract on the sample images</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../credits.html">Small Print</a></li>
@@ -79,6 +63,7 @@
 
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
 <span class="c1"># Load the jpeg</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../../samples/1901-01.jpg&quot;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jf</span><span class="p">:</span>
@@ -90,6 +75,8 @@
 
 <span class="c1"># Save the resulting JSON</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span> <span class="s2">&quot;detection.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span> <span class="p">)</span> <span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;detection.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -106,15 +93,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="plot_polygons.html" title="Script to plot comparison figure"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="polygons.html" title="Analysis of the Weatherrescue Ben Nevis sample"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../samples_results.html" >Textract results for a set of sample images</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="polygons.html" >Analysis of the Weatherrescue Ben Nevis sample</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
