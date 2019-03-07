@@ -1,5 +1,5 @@
-Script to plot comparison figure
-================================
+Plot the block layout
+=====================
 
 .. literalinclude:: ../../../analyses/samples/Jeannette/plot_polygons.py
 

@@ -1,21 +1,17 @@
-Analysis of the Farragut logbook sample
-==============================================
+A closer look at the block layout
+=================================
 
 .. figure:: ../../../analyses/samples/Farragut/Farragut.png
    :width: 95%
    :align: center
    :figwidth: 95%
 
-   :doc:`Farragut logbook sample image <sample>`, overlain with the polygons where Textract has detected text.
+   `Farragut logbook sample image <../../_images/Farragut-DD-348-1942-01-0021.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    
-Code to make the figure
------------------------
-
 .. toctree::
    :maxdepth: 1
    :titlesonly:
 
-   run_textract
    plot_polygons

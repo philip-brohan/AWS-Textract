@@ -54,7 +54,7 @@ def b2t(dct):
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:
-    if 'Text' in block and 'Relationships' in block:
+    if 'Text' in block and block['BlockType']=='WORD':
        # Polygon
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
@@ -71,13 +71,17 @@ for block in textract['Blocks']:
         if (block['Geometry']['BoundingBox']['Height'] >
             block['Geometry']['BoundingBox']['Width']*2):
             angle=90
+            
+        charsize=28
+        if block['Geometry']['BoundingBox']['Top']>0.87:
+            charsize=18 # Small print at bottom of page
         ax_result.text(txt_centroid[0],txt_centroid[1],
                        block['Text'],
-                       fontsize=28,
+                       fontsize=charsize,
                        verticalalignment='center',
                        horizontalalignment='center',
                        rotation=angle)
-    if zorder==0: # 1st block - page fill
+    if block['BlockType']=='PAGE':
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
                                       edgecolor=(0,0,0,1),

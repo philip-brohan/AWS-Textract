@@ -1,5 +1,5 @@
-Analysis of the Indian Daily Weather Reports sample
-===================================================
+A closer look at the block layout
+=================================
 
 .. figure:: ../../../analyses/samples/IDWR/IDWR.png
    :width: 95%
@@ -10,12 +10,8 @@ Analysis of the Indian Daily Weather Reports sample
 
 |	      
    
-Code to make the figure
------------------------
-
 .. toctree::
    :maxdepth: 1
    :titlesonly:
 
-   run_textract
    plot_polygons

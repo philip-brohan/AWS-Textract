@@ -6,11 +6,30 @@ Our understanding of weather and climate depends fundamentally on observations, 
 `Amazon Textract <https://aws.amazon.com/textract/>`_ is a web service (currently in closed beta) that automatically extracts text and data from scanned documents. This document describes a test of this service as a tool for weather data rescue.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    Getting started with Textract <install>
-   A set of sample images <samples/samples>
-   Running Textract on the sample images <samples/samples_results>
+   
+I tested Textract on sample images from several different documents containing weather observations we need to transcribe. Some were somewhat successful:
+   
+.. toctree::
+   :maxdepth: 1
+
+   samples/Second_order/text
+   samples/Observatories/text
+   samples/DWR_1862/text
+   samples/Farragut/text
+   samples/Jeannette/text
+   
+Some were total failures:
+
+.. toctree::
+   :maxdepth: 1
+
+   samples/Ben_Nevis/text
+   samples/Argentine_DWR/text
+   samples/IDWR/text
+   samples/DWR_1901/text
 
 .. toctree::
    :titlesonly:

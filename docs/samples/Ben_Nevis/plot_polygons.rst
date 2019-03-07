@@ -1,5 +1,5 @@
-Script to plot comparison figure
-================================
+Plot the block layout
+=====================
 
 .. literalinclude:: ../../../analyses/samples/Ben_Nevis/plot_polygons.py
 
