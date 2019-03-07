@@ -8,6 +8,14 @@ Analysis of the Second Order Stations sample
 
    :doc:`Second order station records sample image <sample>`, overlain with the polygons where Textract has detected text.
 
+As the layout analysis is fairly successful, its worth looking at the text produced as well:
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   text
+
 |	      
    
 Code to make the figure
