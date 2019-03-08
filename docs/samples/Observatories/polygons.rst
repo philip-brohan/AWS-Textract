@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   Observatories Year Book sample image <../../_images/Aberdeen_pressure_1923.jpg>`_, overlain with the polygons where Textract has detected text.
+   `Observatories Year Book sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/Aberdeen_pressure_1923.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

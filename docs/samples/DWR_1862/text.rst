@@ -9,7 +9,7 @@ The `Daily Weather Reports <http://brohan.org/UK-digitisation/sources/DWR.html>`
    :align: center
    :figwidth: 95%
 
-   `DWR 1862 sample image <../../_images/DWR_1862_03.jpg>`_, alongside the word blocks produced by Textract.
+   `DWR 1862 sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/DWR_1862_03.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    
