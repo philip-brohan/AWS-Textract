@@ -28,6 +28,7 @@ Some were total failures:
 
    samples/Ben_Nevis/text
    samples/Argentine_DWR/text
+   samples/US_map/text
    samples/IDWR/text
    samples/DWR_1901/text
 
