@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   `DWR 1901 sample image <../../_images/DWR_1901_03_left.jpg>`_, overlain with the polygons where Textract has detected text.
+   `DWR 1901 sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/DWR_1901_03_left.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

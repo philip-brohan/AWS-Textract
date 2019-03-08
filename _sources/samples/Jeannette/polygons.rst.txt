@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   `Jeannette logbook sample image <../../_images/24-118-jeannette-vol003_199.jpg>`_, overlain with the polygons where Textract has detected text.
+   `Jeannette logbook sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/24-118-jeannette-vol003_199.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

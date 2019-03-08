@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   :doc:`IDWR sample image <sample>`, overlain with the polygons where Textract has detected text.
+   `IDWR sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/idwr1893-v1_0021.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

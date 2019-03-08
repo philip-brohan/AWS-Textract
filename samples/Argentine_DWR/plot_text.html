@@ -13,10 +13,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="A closer look at the block layout" href="polygons.html" />
-    <link rel="prev" title="Script to run Textract" href="run_textract.html" /> 
+    <link rel="prev" title="Textract output (as JSON)" href="show_output.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -28,11 +29,10 @@
           <a href="polygons.html" title="A closer look at the block layout"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="run_textract.html" title="Script to run Textract"
+          <a href="show_output.html" title="Textract output (as JSON)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../samples.html" >A set of sample images for testing</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="text.html" accesskey="U">Sample from the Argentine Daily Weather Reports</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="text.html" accesskey="U">Sample from the Argentine Daily Weather Reports</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -41,21 +41,21 @@
               <img class="logo" src="../../_static/Second_order.png" alt="Logo"/>
             </a></p>
 <h3><a href="../../index.html">Table of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Getting started with Textract</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../samples.html">A set of sample images</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../Observatories/sample.html">Printed tables from the UK Observatories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Second_order/sample.html">Printed tables from the UK Second Order Stations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Ben_Nevis/sample.html">Printed tables from Weatherrescue Ben Nevis project</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="text.html">Sample from the Argentine Daily Weather Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../IDWR/sample.html">Printed tables from the Indian Daily Weather Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../DWR_1901/sample.html">The UK Daily Weather Reports (1901)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../DWR_1862/sample.html">The UK Daily Weather Reports (1862)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Farragut/sample.html">Typed tables from the logbook of USS Farragut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Jeannette/sample.html">Manuscript tables from the logbook of USS Jeannette</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../samples_results.html">Running Textract on the sample images</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Second_order/text.html">Sample from the UK Second Order Stations Books</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Observatories/text.html">Sample from the UK Observatories Year Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DWR_1862/text.html">Sample from the UK Daily Weather Reports (1862)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Farragut/text.html">Sample from the logbook of USS Farragut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jeannette/text.html">Sample from the logbook of USS Jeannette</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Ben_Nevis/text.html">Sample from the Weatherrescue Ben Nevis project</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="text.html">Sample from the Argentine Daily Weather Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IDWR/text.html">Sample from the Indian Daily Weather Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DWR_1901/text.html">Sample from the UK Daily Weather Reports (1901)</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../credits.html">Small Print</a></li>
@@ -134,7 +134,7 @@
 <span class="c1"># Draw all the blocks</span>
 <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
 <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">textract</span><span class="p">[</span><span class="s1">&#39;Blocks&#39;</span><span class="p">]:</span>
-    <span class="k">if</span> <span class="s1">&#39;Text&#39;</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">and</span> <span class="s1">&#39;Relationships&#39;</span> <span class="ow">in</span> <span class="n">block</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;Text&#39;</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">and</span>  <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;WORD&#39;</span><span class="p">:</span>
        <span class="c1"># Polygon</span>
         <span class="n">pp</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">d2p</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;Polygon&#39;</span><span class="p">]),</span>
                                       <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -157,7 +157,7 @@
                        <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
                        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
                        <span class="n">rotation</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">zorder</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># 1st block - page fill</span>
+    <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGE&#39;</span><span class="p">:</span>
         <span class="n">pp</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">d2p</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;Polygon&#39;</span><span class="p">]),</span>
                                       <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                       <span class="n">edgecolor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
@@ -192,11 +192,10 @@
           <a href="polygons.html" title="A closer look at the block layout"
              >next</a> |</li>
         <li class="right" >
-          <a href="run_textract.html" title="Script to run Textract"
+          <a href="show_output.html" title="Textract output (as JSON)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../samples.html" >A set of sample images for testing</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="text.html" >Sample from the Argentine Daily Weather Reports</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="text.html" >Sample from the Argentine Daily Weather Reports</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -8,7 +8,7 @@ Over the colonial period, daily weather reports were published for stations in t
    :align: center
    :figwidth: 95%
 
-   `IDWR sample image <../../_images/idwr1893-v1_0021.jpg>`_, alongside the word blocks produced by Textract.
+   `IDWR sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/idwr1893-v1_0021.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    

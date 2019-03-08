@@ -8,7 +8,7 @@ The `Observatories Year Book <http://brohan.org/UK-digitisation/sources/observat
    :align: center
    :figwidth: 95%
 
-   `Observatories Year Book sample image <../../_images/Aberdeen_pressure_1923.jpg>`_, alongside the word blocks produced by Textract.
+   `Observatories Year Book sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/Aberdeen_pressure_1923.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    

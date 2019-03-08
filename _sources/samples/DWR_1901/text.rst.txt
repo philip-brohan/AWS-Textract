@@ -8,7 +8,7 @@ Daily Weather Reports are collections of telegraph observations used to make dai
    :align: center
    :figwidth: 95%
 
-   `DWR 1901 sample image <../../_images/DWR_1901_03_left.jpg>`_, alongside the word blocks produced by Textract.
+   `DWR 1901 sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/DWR_1901_03_left.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    

@@ -8,7 +8,7 @@ Daily Weather Reports are collections of telegraph observations used to make dai
    :align: center
    :figwidth: 95%
 
-   `Argentine DWR sample image <../../_images/103.jpg>`_, alongside the text blocks produced by Textract.
+   `Argentine DWR sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/103.jpg>`_, alongside the text blocks produced by Textract.
 
 |	      
    

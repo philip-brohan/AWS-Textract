@@ -10,7 +10,7 @@ These observations have already been transcribed, by the `Weather rescue Ben Nev
    :align: center
    :figwidth: 95%
 
-   `Ben Nevis project sample image <../../_images/1901-01.jpg>`_, alongside the text blocks produced by Textract.
+   `Ben Nevis project sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/1901-01.jpg>`_, alongside the text blocks produced by Textract.
 
 |	      
    

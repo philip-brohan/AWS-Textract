@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   `Second Order stations book sample image <../../_images/Margate_1891_02.jpg>`_, overlain with the polygons where Textract has detected text.
+   `Second Order stations book sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/Margate_1891_02.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

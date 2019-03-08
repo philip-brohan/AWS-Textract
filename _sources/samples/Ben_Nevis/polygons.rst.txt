@@ -6,7 +6,7 @@ A closer look at the block layout
    :align: center
    :figwidth: 95%
 
-   `Ben Nevis project sample image <../../_images/1901-01.jpg>`_, overlain with the polygons where Textract has detected text.
+   `Ben Nevis project sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/1901-01.jpg>`_, overlain with the polygons where Textract has detected text.
 
 |	      
    

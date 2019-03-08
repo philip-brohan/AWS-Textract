@@ -8,7 +8,7 @@ The `logbook of USS Farragut, in 1942 <https://catalog.archives.gov/id/7795027>`
    :align: center
    :figwidth: 95%
 
-   `Farragut logbook sample image <../../_images/Farragut-DD-348-1942-01-0021.jpg>`_, alongside the word blocks produced by Textract.
+   `Farragut logbook sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/Farragut-DD-348-1942-01-0021.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    

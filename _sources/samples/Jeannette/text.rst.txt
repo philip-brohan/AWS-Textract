@@ -8,7 +8,7 @@ The `logbook of USS Jeannette <https://catalog.archives.gov/id/6919191>`_, on it
    :align: center
    :figwidth: 95%
 
-   `Jeannette logbook sample image <../../_images/24-118-jeannette-vol003_199.jpg>`_, alongside the word blocks produced by Textract.
+   `Jeannette logbook sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/24-118-jeannette-vol003_199.jpg>`_, alongside the word blocks produced by Textract.
 
 |	      
    
