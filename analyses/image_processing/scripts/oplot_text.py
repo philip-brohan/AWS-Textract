@@ -61,7 +61,7 @@ def b2t(dct):
     result[0]=dct['Left']+dct['Width']/2
     result[1]=1.0-dct['Top']-dct['Height']/2
     return result
-    
+   
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:

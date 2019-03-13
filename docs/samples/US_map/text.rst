@@ -1,6 +1,8 @@
 Sample from the US Manual Analysis maps
 =======================================
 
+.. seealso:: This sample :doc:`works a bit better after image adjustment <../../image_processing/US_map/modified>`
+
 
 .. figure:: ../../../analyses/samples/US_map/US_map_text.png
    :width: 95%
