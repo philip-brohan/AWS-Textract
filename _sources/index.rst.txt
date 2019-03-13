@@ -32,6 +32,19 @@ Some were total failures:
    samples/IDWR/text
    samples/DWR_1901/text
 
+Textract is a black box, there's no way to control how it operates, so the only way to try and improve the output is to modify the images before running Textract on them. It's easy to change things like the saturation, contrast and sharpness, and it does make a difference - all of the failed samples can be converted into (partial) successes by changing the image contrast, sharpness, and size.
+
+.. toctree::
+   :maxdepth: 1
+
+   image_processing/Ben_Nevis/modified
+   image_processing/Argentine_DWR/modified
+   image_processing/US_map/modified
+   image_processing/IDWR/modified
+   image_processing/DWR_1901/modified
+
+A combination of cropping, contrast reduction, and sharpness reduction, worked well to change total failures into partial successes. I have not managed to use such image adjustment to make partial successes into bigger successes.
+
 .. toctree::
    :titlesonly:
    :maxdepth: 1

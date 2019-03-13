@@ -1,6 +1,8 @@
 Sample from the UK Daily Weather Reports (1901)
 ===============================================
 
+.. seealso:: This sample :doc:`works much better after image adjustment <../../image_processing/DWR_1901/modified>`
+
 Daily Weather Reports are collections of telegraph observations used to make daily synoptic weathermaps. The UK started producing them in 1860, and by 1901 they had established a standard format with a printed table structure filled in by hand. The UK DWRs `have been digitised for the period 1901-1910 through the weatherrescue.org project <http://brohan.org/transcription_methods_review/case_studies/DWR/DWR.html>`_, but other decades are not yet digitised.
 
 .. figure:: ../../../analyses/samples/DWR_1901/DWR_1901_text.png
