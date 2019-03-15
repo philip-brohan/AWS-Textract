@@ -33,6 +33,7 @@ That should be enough to get it working. Test it from the command line by runnin
    
 If it works, this will return a load of JSON output. If it produces an error message, something has gone wrong.
 
+Textract is not that reliable; about one time in ten it will fail, throwing a ``ProvisionedThroughputExceededException``. But this is only a nuisance, just keep running it again until it works.
 
 I was most confused by the limitations imposed by the different AWS regions: If you run `aws textract` in the wrong region, it won't work. If you run textract in one region, but specify a S3 document in a different region, it won't work.
 

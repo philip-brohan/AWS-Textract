@@ -45,6 +45,17 @@ Textract is a black box, there's no way to control how it operates, so the only 
 
 A combination of cropping, contrast reduction, and sharpness reduction, worked well to change total failures into partial successes. I have not managed to use such image adjustment to make partial successes into bigger successes.
 
+
+As the image modification produced reasonable results on the :doc:`Ben Nevis project sample <image_processing/Ben_Nevis/modified>`, it was possible to run Textract against the `OCR-weatherrescue transcription benchmark <http://brohan.org/OCR-weatherrescue/index.html>`_:
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   OCR-weatherrescue/months
+
+As of March 2019, Textract is a very encouraging technology. It's not yet good enough to be used operationally on documents of this type, but it is *almost* good enough for the simplest examples. It's still in beta test, and it seems likely that future versions will be very useful. Its speed and ease of use mean that, if it does improve sufficiently, it will be a big asset to data rescue work.
+
 .. toctree::
    :titlesonly:
    :maxdepth: 1
