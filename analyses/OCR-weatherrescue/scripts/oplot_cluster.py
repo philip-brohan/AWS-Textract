@@ -28,8 +28,11 @@ parser.add_argument("--ndays", help="How many days in this month",
                     type=int,required=True)
 parser.add_argument("--guides", help="Plot the day+hour guidelines",
                     type=bool,default=False)
-parser.add_argument("--opfile", help="Output file name",
+parser.add_argument("--opimg", help="Image output file name",
                     default="oplot.png",
+                    type=str,required=False)
+parser.add_argument("--opstats", help="Statistics output file name",
+                    default="stats.pkl",
                     type=str,required=False)
 args = parser.parse_args()
 
@@ -109,7 +112,8 @@ for block in textract['Blocks']:
         if (block['Geometry']['BoundingBox']['Width'] > 0.035 or
             block['Geometry']['BoundingBox']['Width'] < 0.025 or
             block['Geometry']['BoundingBox']['Height'] > 0.02 or
-            block['Geometry']['BoundingBox']['Height'] < 0.01): continue
+            block['Geometry']['BoundingBox']['Height'] < 0.01 or
+            block['Geometry']['BoundingBox']['Top'] < 0.1): continue
         cent=b2t(block['Geometry']['BoundingBox'])
         xc.append(cent[0])
         yc.append(cent[1])
@@ -135,6 +139,12 @@ if args.guides==True:
                 linewidth=1,
                 color=(1,0,0,1),
                 zorder=5))
+
+# Keep track of good, bad, and missing data
+stats={'Total':   0,
+       'Good':    0,
+       'Bad':     0,
+       'Missing': 0}
 
 # Make 2d array of blocks - for each row/column intersection
 data_points=[[None] * len(columns) for i in range(len(rows))]
@@ -164,8 +174,10 @@ for block in textract['Blocks']:
 # Draw a marker at every hour - either a text block or a missing marker
 for rwi in range(len(rows)):
    for cmi in range(len(columns)):
+      stats['Total'] += 1
       if data_points[rwi][cmi] is None:
         # Mark as missing
+           stats['Missing'] += 1
            pp=matplotlib.patches.Polygon(m2p(columns[cmi],rows[rwi]),
                                          closed=True,
                                          fill=False, 
@@ -178,9 +190,14 @@ for rwi in range(len(rows)):
            ax_result.add_patch(pp)
       else:
           block=data_points[rwi][cmi]
+          # Compare the Textract value with the benchmark
           bmvalue=bm.iloc[len(rows)-rwi-1][cmi+1].replace("'","")
-          bcol=(1,0.5,0.5,1)
-          if fixup(block['Text'])==bmvalue: bcol=(0.7,1,0.7,1)
+          if fixup(block['Text'])==bmvalue:
+              stats['Good'] += 1 
+              bcol=(0.7,1,0.7,1)
+          else:
+              stats['Bad'] += 1
+              bcol=(1,0.5,0.5,1)
           pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                         closed=True,
                                         edgecolor=bcol,
@@ -206,4 +223,9 @@ for rwi in range(len(rows)):
     
 
 # Draw the image
-fig.savefig(args.opfile)
+fig.savefig(args.opimg)
+
+# Output the stats
+print(stats)
+with open( args.opstats, "wb" ) as pkf:
+    pickle.dump(stats, pkf )

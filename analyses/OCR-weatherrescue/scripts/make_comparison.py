@@ -21,16 +21,22 @@ parser.add_argument("--brightness", help="Brightness scale factor",
                     type=float,default=1.0)
 parser.add_argument("--sharpness", help="Sharpness scale factor",
                     type=float,default=1.0)
+parser.add_argument("--opimg", help="Image output file name",
+                    default="oplot.png",
+                    type=str,required=False)
+parser.add_argument("--opstats", help="Statistics output file name",
+                    default="stats.pkl",
+                    type=str,required=False)
 args = parser.parse_args()
 
-source="../../../../OCR-weatherrescue/images/%04d-%02d.jpg" % (
+source="../../../OCR-weatherrescue/images/%04d-%02d.jpg" % (
                       args.year,args.month)
 
-benchmark="../../../../OCR-weatherrescue/data/%04d-%02d.csv" % (
+benchmark="../../../OCR-weatherrescue/data/%04d-%02d.csv" % (
                       args.year,args.month)
 
 # Make the modified image
-proc = subprocess.Popen("./modify.py " +
+proc = subprocess.Popen("./scripts/modify.py " +
                         "--source=%s "     % source +
                         "--colour=%f "     % args.colour +
                         "--contrast=%f "   % args.contrast +
@@ -39,19 +45,25 @@ proc = subprocess.Popen("./modify.py " +
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()
+if len(err)>0: Sys.exit(0)
 
 # Run Textract
-proc = subprocess.Popen("./run_textract.py",                    
+proc = subprocess.Popen("./scripts/run_textract.py",                    
                         stdout=subprocess.PIPE, 
                         stderr=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()
+if len(err)>0: Sys.exit(0)
 
 # Make the validation plot
 ndays=monthrange(args.year,args.month)[1]
-proc = subprocess.Popen("./oplot_cluster.py " +
+proc = subprocess.Popen("./scripts/oplot_cluster.py " +
                         "--source=%s "     % source +
                         "--benchmark=%s "  % benchmark +
+                        "--opimg=%s "      % args.opimg +
+                        "--opstats=%s "    % args.opstats +
                         "--ndays=%d "      % ndays,
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()
+print(err)
+print(out)
