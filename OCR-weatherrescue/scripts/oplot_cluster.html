@@ -57,6 +57,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../image_processing/DWR_1901/modified.html">Modified DWR_1901 sample image</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../months.html">OCR-weatherrescue benchmark comparison</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../credits.html">Small Print</a></li>
 </ul>
 
@@ -93,7 +96,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.patches</span>
 <span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="k">import</span> <span class="n">Set2</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">jenkspy</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">gaussian_kde</span>
 <span class="kn">import</span> <span class="nn">pandas</span>
 
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -181,24 +184,43 @@
             <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">id</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">text</span><span class="p">[</span><span class="nb">id</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
     <span class="k">return</span> <span class="n">text</span>
 
+<span class="k">def</span> <span class="nf">hasNumbers</span><span class="p">(</span><span class="n">inputString</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">char</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">inputString</span><span class="p">)</span>
 <span class="c1"># Find the column locations corresponding to hours, </span>
 <span class="c1">#  and the row locations corresponding to days</span>
 <span class="n">xc</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">yc</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">textract</span><span class="p">[</span><span class="s1">&#39;Blocks&#39;</span><span class="p">]:</span>
     <span class="k">if</span> <span class="s1">&#39;Text&#39;</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">and</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;WORD&#39;</span><span class="p">:</span>
-        <span class="c1"># Only look at blocks of the right size to be good data</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">][</span><span class="s1">&#39;Width&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.035</span> <span class="ow">or</span>
-            <span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">][</span><span class="s1">&#39;Width&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.025</span> <span class="ow">or</span>
-            <span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">][</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.02</span> <span class="ow">or</span>
-            <span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">][</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.01</span> <span class="ow">or</span>
-            <span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">][</span><span class="s1">&#39;Top&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">):</span> <span class="k">continue</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hasNumbers</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">]):</span> <span class="k">continue</span>
         <span class="n">cent</span><span class="o">=</span><span class="n">b2t</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">])</span>
         <span class="n">xc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cent</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">yc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cent</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">columns</span><span class="o">=</span><span class="n">jenkspy</span><span class="o">.</span><span class="n">jenks_breaks</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xc</span><span class="p">),</span><span class="n">nb_class</span><span class="o">=</span><span class="mi">25</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">25</span><span class="p">]</span>
-<span class="n">rows</span><span class="o">=</span><span class="n">jenkspy</span><span class="o">.</span><span class="n">jenks_breaks</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yc</span><span class="p">),</span>
-                          <span class="n">nb_class</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">ndays</span><span class="o">+</span><span class="mi">2</span><span class="p">)[</span><span class="mi">2</span><span class="p">:(</span><span class="n">args</span><span class="o">.</span><span class="n">ndays</span><span class="o">+</span><span class="mi">2</span><span class="p">)]</span>
+
+<span class="c1"># Find clusters of points in a and y - these are the rows and columns</span>
+<span class="k">def</span> <span class="nf">get_columns</span><span class="p">(</span><span class="n">xc</span><span class="p">):</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">bw_method</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+    <span class="n">x_grid</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">dens</span><span class="o">=</span><span class="n">kde</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
+    <span class="n">col</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> 
+            <span class="n">dens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">dens</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span>
+            <span class="n">dens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">dens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">col</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_grid</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+<span class="n">columns</span><span class="o">=</span><span class="n">get_columns</span><span class="p">(</span><span class="n">xc</span><span class="p">)</span>
+<span class="c1"># If fewer than 26 columns we&#39;ve lost some in the fold, add it back</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">:</span>
+   <span class="n">columns</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> 
+<span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">rows</span><span class="o">=</span><span class="n">get_columns</span><span class="p">(</span><span class="n">yc</span><span class="p">)</span>
+<span class="c1"># Image might or might not have a row of hour numbers</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">==</span><span class="n">args</span><span class="o">.</span><span class="n">ndays</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span>
+    <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))]</span>
 
 <span class="c1"># Draw the breaks</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">guides</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
@@ -270,7 +292,10 @@
       <span class="k">else</span><span class="p">:</span>
           <span class="n">block</span><span class="o">=</span><span class="n">data_points</span><span class="p">[</span><span class="n">rwi</span><span class="p">][</span><span class="n">cmi</span><span class="p">]</span>
           <span class="c1"># Compare the Textract value with the benchmark</span>
-          <span class="n">bmvalue</span><span class="o">=</span><span class="n">bm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">-</span><span class="n">rwi</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">cmi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+          <span class="k">try</span><span class="p">:</span>
+              <span class="n">bmvalue</span><span class="o">=</span><span class="n">bm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">-</span><span class="n">rwi</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">cmi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+          <span class="k">except</span><span class="p">:</span>
+              <span class="n">bmvalue</span><span class="o">=</span><span class="mf">0.0</span>
           <span class="k">if</span> <span class="n">fixup</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">])</span><span class="o">==</span><span class="n">bmvalue</span><span class="p">:</span>
               <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;Good&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> 
               <span class="n">bcol</span><span class="o">=</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>

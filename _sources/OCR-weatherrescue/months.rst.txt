@@ -1,7 +1,15 @@
 OCR-weatherrescue benchmark comparison
 ======================================
 
-The `OCR-weatherrescue benchmark <http://brohan.org/OCR-weatherrescue/index.html>`_ is a test dataset for document transcription systems. It contains 70 document images, each of a table of numbers, and quality-controlled transcriptions for each. Textract can be run on each of the images, and scored on its ability to reproduce the known results.
+The `OCR-weatherrescue benchmark <http://brohan.org/OCR-weatherrescue/index.html>`_ is a test dataset for document transcription systems. It contains 81 document images, each of a table of numbers, and quality-controlled transcriptions for each. Textract can be run on each of the images, and scored on its ability to reproduce the known results.
+
+.. figure:: ../../analyses/OCR-weatherrescue/1898-02.png
+   :width: 95%
+   :align: center
+   :figwidth: 95%
+
+   Textract results for :doc:`a sample month  <auto_generated/1898-02>`. Green blocks are entries sucessfully read by Textract. Filled red blocks are entries inacurately read, and hatched red blocks are entries missed altogether.
+
 
 Comparisons by month
 --------------------
@@ -105,12 +113,12 @@ Comparisons by month
 Summary
 -------
 
-Of 59,136 entries:
- * 19,261 (%) were read successfully
- * 32,548 (%) were read inaccurately
- * 7327  (%) were missed altogether
+Of 59,167 entries:
+ * 51,996 (88%) were read successfully
+ *    971 (2%) were read inaccurately
+ *  6,200 (10%) were missed altogether
 
-In accuracy, Textract is not great - it consistently misses upwards of 5% of the entries even on the best images where it is essentially successful.
+In accuracy, Textract is not great - it consistently misses upwards of 10% of the entries even on the best images where it is essentially successful. (It could improve on this dramatically by being braver at guessing where on the page there is text).
 
 But its speed advantage over manual transcription is **enormous**. Transcribing this dataset took the citizen science project `weatherrescue.org <http://weatherrescue.org>`_ many days of human effort, spread over weeks of elapsed time. Textract took only a few minutes (and parallelising calls to Textract could reduce this to seconds).
  
