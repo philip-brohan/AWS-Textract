@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = ../../AWS-Textract.ghpg
+BUILDDIR      = $(SCRATCH)/Projects.ghpg/AWS-Textract.ghpg
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4

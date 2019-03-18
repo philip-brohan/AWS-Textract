@@ -27,7 +27,7 @@ parser.add_argument("--benchmark", help="Benchmark results file name",
 parser.add_argument("--ndays", help="How many days in this month",
                     type=int,required=True)
 parser.add_argument("--guides", help="Plot the day+hour guidelines",
-                    type=bool,default=False)
+                    type=bool,default=True)
 parser.add_argument("--opimg", help="Image output file name",
                     default="oplot.png",
                     type=str,required=False)
@@ -102,22 +102,25 @@ def fixup(text):
             text=text[0:id]+'.'+text[id+1:]
     return text
 
+def hasNumbers(inputString):
+    return any(char.isdigit() for char in inputString)
 # Find the column locations corresponding to hours, 
 #  and the row locations corresponding to days
 xc=[]
 yc=[]
 for block in textract['Blocks']:
     if 'Text' in block and block['BlockType']=='WORD':
+        if not hasNumbers(block['Text']): continue
         # Only look at blocks of the right size to be good data
-        if (block['Geometry']['BoundingBox']['Width'] > 0.035 or
-            block['Geometry']['BoundingBox']['Width'] < 0.025 or
-            block['Geometry']['BoundingBox']['Height'] > 0.02 or
-            block['Geometry']['BoundingBox']['Height'] < 0.01 or
-            block['Geometry']['BoundingBox']['Top'] < 0.1): continue
+#        if (block['Geometry']['BoundingBox']['Width'] > 0.035 or
+#            block['Geometry']['BoundingBox']['Width'] < 0.025 or
+#            block['Geometry']['BoundingBox']['Height'] > 0.02 or
+#            block['Geometry']['BoundingBox']['Height'] < 0.01 or
+#            block['Geometry']['BoundingBox']['Top'] < 0.1): continue
         cent=b2t(block['Geometry']['BoundingBox'])
         xc.append(cent[0])
         yc.append(cent[1])
-columns=jenkspy.jenks_breaks(numpy.array(xc),nb_class=25)[1:25]
+columns=jenkspy.jenks_breaks(numpy.array(xc),nb_class=27)[2:26]
 rows=jenkspy.jenks_breaks(numpy.array(yc),
                           nb_class=args.ndays+2)[2:(args.ndays+2)]
 

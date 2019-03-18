@@ -4,7 +4,7 @@
 #  data from the weatherrescue OCR benchmark.
 
 import argparse
-import datetime
+import sys
 import subprocess
 from calendar import monthrange
 
@@ -45,14 +45,14 @@ proc = subprocess.Popen("./scripts/modify.py " +
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()
-if len(err)>0: Sys.exit(0)
+if len(err)>0: sys.exit(0)
 
 # Run Textract
 proc = subprocess.Popen("./scripts/run_textract.py",                    
                         stdout=subprocess.PIPE, 
                         stderr=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()
-if len(err)>0: Sys.exit(0)
+if len(err)>0: sys.exit(0)
 
 # Make the validation plot
 ndays=monthrange(args.year,args.month)[1]
