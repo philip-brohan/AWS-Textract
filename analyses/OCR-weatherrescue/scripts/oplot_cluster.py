@@ -14,7 +14,7 @@ from matplotlib.figure import Figure
 import matplotlib.patches
 from matplotlib.cm import Set2
 import numpy
-import jenkspy
+from scipy.stats import gaussian_kde
 import pandas
 
 parser = argparse.ArgumentParser()
@@ -111,18 +111,34 @@ yc=[]
 for block in textract['Blocks']:
     if 'Text' in block and block['BlockType']=='WORD':
         if not hasNumbers(block['Text']): continue
-        # Only look at blocks of the right size to be good data
-#        if (block['Geometry']['BoundingBox']['Width'] > 0.035 or
-#            block['Geometry']['BoundingBox']['Width'] < 0.025 or
-#            block['Geometry']['BoundingBox']['Height'] > 0.02 or
-#            block['Geometry']['BoundingBox']['Height'] < 0.01 or
-#            block['Geometry']['BoundingBox']['Top'] < 0.1): continue
         cent=b2t(block['Geometry']['BoundingBox'])
         xc.append(cent[0])
         yc.append(cent[1])
-columns=jenkspy.jenks_breaks(numpy.array(xc),nb_class=27)[2:26]
-rows=jenkspy.jenks_breaks(numpy.array(yc),
-                          nb_class=args.ndays+2)[2:(args.ndays+2)]
+
+# Find clusters of points in a and y - these are the rows and columns
+def get_columns(xc):
+    kde = gaussian_kde(xc,bw_method=0.01)
+    x_grid=numpy.linspace(0,1,1000)
+    dens=kde.evaluate(x_grid)
+    col=[]
+    for i in range(1,len(x_grid)-1):
+        if (dens[i]>1 and 
+            dens[i]>dens[i-1] and
+            dens[i]>dens[i+1]):
+            col.append(x_grid[i])
+    return(col)
+
+columns=get_columns(xc)
+# If fewer than 26 columns we've lost one in the fold, add it back
+if len(columns)<26:
+   columns.insert(0,columns[0]-(columns[1]-columns[0])) 
+columns=columns[1:(len(columns)-1)]
+rows=get_columns(yc)
+# Image might or might not have a row of hour numbers
+if len(rows)==args.ndays+2:
+    rows=rows[1:(len(rows)-1)]
+else:
+    rows=rows[1:(len(rows))]
 
 # Draw the breaks
 if args.guides==True:
