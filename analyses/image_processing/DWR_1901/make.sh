@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Tweak the contrast on the DWR 1901 sample to get 
 #   much better Textract results.

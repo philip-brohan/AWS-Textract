@@ -4,6 +4,7 @@
 
 import subprocess
 import os.path
+import time
 
 for year in range(1898,1905):
     for month in range(1,13):
@@ -22,4 +23,5 @@ for year in range(1898,1905):
                             stdout=subprocess.PIPE, 
                             stderr=subprocess.PIPE, shell=True)
         (out, err) = proc.communicate()
+        time.sleep(10)
                     

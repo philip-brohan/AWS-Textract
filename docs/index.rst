@@ -45,8 +45,7 @@ Textract is a black box, there's no way to control how it operates, so the only 
 
 A combination of cropping, contrast reduction, and sharpness reduction, worked well to change total failures into partial successes. I have not managed to use such image adjustment to make partial successes into bigger successes.
 
-
-As the image modification produced reasonable results on the :doc:`Ben Nevis project sample <image_processing/Ben_Nevis/modified>`, it was possible to run Textract against the `OCR-weatherrescue transcription benchmark <http://brohan.org/OCR-weatherrescue/index.html>`_:
+As the image modification produced reasonable results on the :doc:`Ben Nevis project sample <image_processing/Ben_Nevis/modified>`, it was possible to run Textract against the `OCR-weatherrescue transcription benchmark <http://brohan.org/OCR-weatherrescue/index.html>`_. Textract was only 88% accurate on this benchmark, though it did make up for this by being thousands of times faster than human transcribers.
 
 .. toctree::
    :titlesonly:

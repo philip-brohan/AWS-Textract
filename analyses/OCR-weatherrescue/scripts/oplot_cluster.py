@@ -27,7 +27,7 @@ parser.add_argument("--benchmark", help="Benchmark results file name",
 parser.add_argument("--ndays", help="How many days in this month",
                     type=int,required=True)
 parser.add_argument("--guides", help="Plot the day+hour guidelines",
-                    type=bool,default=True)
+                    type=bool,default=False)
 parser.add_argument("--opimg", help="Image output file name",
                     default="oplot.png",
                     type=str,required=False)
@@ -117,7 +117,7 @@ for block in textract['Blocks']:
 
 # Find clusters of points in a and y - these are the rows and columns
 def get_columns(xc):
-    kde = gaussian_kde(xc,bw_method=0.01)
+    kde = gaussian_kde(xc,bw_method=0.02)
     x_grid=numpy.linspace(0,1,1000)
     dens=kde.evaluate(x_grid)
     col=[]
@@ -129,8 +129,8 @@ def get_columns(xc):
     return(col)
 
 columns=get_columns(xc)
-# If fewer than 26 columns we've lost one in the fold, add it back
-if len(columns)<26:
+# If fewer than 26 columns we've lost some in the fold, add it back
+while len(columns)<26:
    columns.insert(0,columns[0]-(columns[1]-columns[0])) 
 columns=columns[1:(len(columns)-1)]
 rows=get_columns(yc)
@@ -210,7 +210,10 @@ for rwi in range(len(rows)):
       else:
           block=data_points[rwi][cmi]
           # Compare the Textract value with the benchmark
-          bmvalue=bm.iloc[len(rows)-rwi-1][cmi+1].replace("'","")
+          try:
+              bmvalue=bm.iloc[len(rows)-rwi-1][cmi+1].replace("'","")
+          except:
+              bmvalue=0.0
           if fixup(block['Text'])==bmvalue:
               stats['Good'] += 1 
               bcol=(0.7,1,0.7,1)

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Crop, and Tweak the contrast on the US weathermap sample to get 
 #   much better Textract results.

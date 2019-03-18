@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Tweak the contrast on the Ben-Nevis sample to get 
 #   much better Textract results.
