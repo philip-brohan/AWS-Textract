@@ -11,9 +11,9 @@ Textract results for the OCR-weatherrescue benchmark 1902-05
    Textract results for `this month in the benchmark  <http://brohan.org/OCR-weatherrescue/individual_months/1903-11.html>`_. Green blocks are entries sucessfully read by Textract. Filled red blocks are entries inacurately read, and hatched red blocks are entries missed altogether.
 
 Of 744 entries:
- * 651 (88%) were read successfully,
- * 4 (1%) were read inaccurately,
- * 89 (12%) were missed altogether.
+ * 0 (0%) were read successfully,
+ * 642 (86%) were read inaccurately,
+ * 102 (14%) were missed altogether.
 
  
 |
