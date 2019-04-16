@@ -33,7 +33,7 @@ That should be enough to get it working. Test it from the command line by runnin
    
 If it works, this will return a load of JSON output. If it produces an error message, something has gone wrong.
 
-The pre-release version of Textract has deliberately limited capacity; it will allow only a small number of simultanious requests across all its users. The practical effect of this is that calls to the service often fail: throwing a ``ProvisionedThroughputExceededException``. This is a nuisance, but you can just keep running it again until it works. I am assured that the production (paid) version of the service will not have this limitation.
+The pre-release version of Textract has deliberately limited capacity; it will allow only a small number of simultanious requests across all its users. The practical effect of this is that my calls to the service often failed, throwing a ``ProvisionedThroughputExceededException``. This is a nuisance, but you can just keep running it again until it works. I am assured that the production (paid) version of the service will not have this limitation.
 
 I was most confused by the limitations imposed by the different AWS regions: For the pre-release version, if you run `aws textract` in the wrong region, it won't work. If you run textract in one region, but specify a S3 document in a different region, it won't work. While it took me a long time to work out what was going wrong with my calls to the service, this is a problem with my understanding of AWS rather than a limitation of Textract. Also, the production (paid) version of the service will be available (eventually) across all the regions.
 
