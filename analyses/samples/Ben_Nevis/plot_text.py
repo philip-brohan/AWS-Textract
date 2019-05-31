@@ -73,7 +73,7 @@ for block in textract['Blocks']:
             angle=90
         ax_result.text(txt_centroid[0],txt_centroid[1],
                        block['Text'],
-                       fontsize=28,
+                       fontsize=18,
                        verticalalignment='center',
                        horizontalalignment='center',
                        rotation=angle)
