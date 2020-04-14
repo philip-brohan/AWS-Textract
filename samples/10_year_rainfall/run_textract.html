@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Script to run Textract &#8212; Testing AWS Textract for weather data rescue</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/1904-02.png" alt="Logo"/>
+            </a></p>
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Getting started with Textract</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Second_order/text.html">Sample from the UK Second Order Stations Books</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Observatories/text.html">Sample from the UK Observatories Year Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DWR_1862/text.html">Sample from the UK Daily Weather Reports (1862)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Farragut/text.html">Sample from the logbook of USS Farragut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jeannette/text.html">Sample from the logbook of USS Jeannette</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Ben_Nevis/text.html">Sample from the Weatherrescue Ben Nevis project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Argentine_DWR/text.html">Sample from the Argentine Daily Weather Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../US_map/text.html">Sample from the US Manual Analysis maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IDWR/text.html">Sample from the Indian Daily Weather Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DWR_1901/text.html">Sample from the UK Daily Weather Reports (1901)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../image_processing/Ben_Nevis/modified.html">Modified Ben Nevis sample image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../image_processing/Argentine_DWR/modified.html">Modified Argentine DWR sample image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../image_processing/US_map/modified.html">Modified US map sample image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../image_processing/IDWR/modified.html">Modified Indian Daily Weather Report sample image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../image_processing/DWR_1901/modified.html">Modified DWR_1901 sample image</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OCR-weatherrescue/months.html">OCR-weatherrescue benchmark comparison</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../credits.html">Small Print</a></li>
+</ul>
+<h3><a href="https://github.com/philip-brohan/AWS-Textract">Get a copy</a></h3>
+
+<ul>
+<li><a href="https://github.com/philip-brohan/AWS-Textract"
+           rel="nofollow">Github repository</a></li>
+</ul>
+
+<h3>Found a bug, or have a suggestion?</h3>
+
+Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise an issue</a>.
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="script-to-run-textract">
+<h1>Script to run Textract<a class="headerlink" href="#script-to-run-textract" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Run Textract on the 1-=year rainfall sample image</span>
+
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Load the jpeg</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../../samples/10-year-rainfall.jpg&quot;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jf</span><span class="p">:</span>
+    <span class="n">ie</span><span class="o">=</span><span class="n">jf</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Analyze the document</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;textract&#39;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">analyze_document</span><span class="p">(</span><span class="n">Document</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Bytes&#39;</span><span class="p">:</span> <span class="n">ie</span><span class="p">},</span>
+                                   <span class="n">FeatureTypes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TABLES&#39;</span><span class="p">])</span>
+
+<span class="c1"># Save the resulting JSON</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span> <span class="s2">&quot;detection.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span> <span class="p">)</span> <span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;detection.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

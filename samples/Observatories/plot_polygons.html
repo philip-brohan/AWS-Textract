@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Plot the block layout &#8212; Testing AWS Textract for weather data rescue</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Sample from the UK Daily Weather Reports (1862)" href="../DWR_1862/text.html" />
+    <link rel="next" title="A closer look at the tables detected" href="tables.html" />
     <link rel="prev" title="A closer look at the block layout" href="polygons.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -26,7 +24,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../DWR_1862/text.html" title="Sample from the UK Daily Weather Reports (1862)"
+          <a href="tables.html" title="A closer look at the tables detected"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="polygons.html" title="A closer look at the block layout"
@@ -98,12 +96,12 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
 
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_agg</span> <span class="k">import</span> \
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_agg</span> <span class="kn">import</span> \
              <span class="n">FigureCanvasAgg</span> <span class="k">as</span> <span class="n">FigureCanvas</span>
-<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="k">import</span> <span class="n">Figure</span>
+<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patches</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
@@ -155,6 +153,9 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
 <span class="c1"># Draw all the blocks</span>
 <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span>
 <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">textract</span><span class="p">[</span><span class="s1">&#39;Blocks&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CELL&#39;</span><span class="p">:</span> <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PAGE&#39;</span><span class="p">:</span> <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TABLE&#39;</span><span class="p">:</span> <span class="k">continue</span>
    <span class="c1"># Bounding box</span>
     <span class="n">bp</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">b2p</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;BoundingBox&#39;</span><span class="p">]),</span>
                                   <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -165,7 +166,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                   <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">)</span>
     <span class="c1"># Don&#39;t bother to plot these - same as the polygons.</span>
-    <span class="c1">#if zorder&gt;10: ax_result.add_patch(bp) # Skip 1st one - full page</span>
+    <span class="c1">#ax_result.add_patch(bp) </span>
    <span class="c1"># Polygon</span>
     <span class="n">pp</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">d2p</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s1">&#39;Geometry&#39;</span><span class="p">][</span><span class="s1">&#39;Polygon&#39;</span><span class="p">]),</span>
                                   <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -175,11 +176,11 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
                                   <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                   <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">zorder</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span> <span class="n">ax_result</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span> <span class="c1"># Skip 1st one - full page</span>
+    <span class="n">ax_result</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span> 
     <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="o">+</span><span class="mi">10</span>
 
 <span class="c1"># Draw the image</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Observatories.png&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Polygons.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -197,7 +198,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../DWR_1862/text.html" title="Sample from the UK Daily Weather Reports (1862)"
+          <a href="tables.html" title="A closer look at the tables detected"
              >next</a> |</li>
         <li class="right" >
           <a href="polygons.html" title="A closer look at the block layout"

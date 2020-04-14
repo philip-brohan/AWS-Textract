@@ -113,12 +113,12 @@ Comparisons by month
 Summary
 -------
 
-Of 59,167 entries:
- * 51,996 (88%) were read successfully
- *    971 (2%) were read inaccurately
- *  6,200 (10%) were missed altogether
+Of 59,136 entries:
+ * 54,650 (92%) were read successfully
+ *  3,361 (6%) were read inaccurately
+ *  1,125 (2%) were missed altogether
 
-In accuracy, Textract is not great - it consistently misses upwards of 10% of the entries even on the best images where it is essentially successful. (It could improve on this dramatically by being braver at guessing where on the page there is text).
+Textract is now pretty good - it's not up to the accuracy rate of manual ranscription (99%+ on this sort of data), but a success rate over 90% is good enough to be useful, and it is likely that adding more quality control checks would increase the success rate further.
 
-But its speed advantage over manual transcription is **enormous**. Transcribing this dataset took the citizen science project `weatherrescue.org <http://weatherrescue.org>`_ many days of human effort, spread over weeks of elapsed time. Textract took only a few minutes (and parallelising calls to Textract could reduce this to seconds).
+Its speed advantage over manual transcription is **enormous**. Transcribing this dataset took the citizen science project `weatherrescue.org <http://weatherrescue.org>`_ many days of human effort, spread over weeks of elapsed time. Textract took only a few minutes (and parallelising calls to Textract could reduce this to seconds).
  

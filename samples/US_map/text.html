@@ -1,23 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Sample from the US Manual Analysis maps &#8212; Testing AWS Textract for weather data rescue</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Script to run Textract" href="run_textract.html" />
-    <link rel="prev" title="Plot the block layout" href="../Argentine_DWR/plot_polygons.html" /> 
+    <link rel="prev" title="Plot the table layout" href="../Argentine_DWR/plot_tables.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,7 +27,7 @@
           <a href="run_textract.html" title="Script to run Textract"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../Argentine_DWR/plot_polygons.html" title="Plot the block layout"
+          <a href="../Argentine_DWR/plot_tables.html" title="Plot the table layout"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
       </ul>
@@ -90,13 +88,9 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
             
   <div class="section" id="sample-from-the-us-manual-analysis-maps">
 <h1>Sample from the US Manual Analysis maps<a class="headerlink" href="#sample-from-the-us-manual-analysis-maps" title="Permalink to this headline">¶</a></h1>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last">This sample <a class="reference internal" href="../../image_processing/US_map/modified.html"><span class="doc">works a bit better after image adjustment</span></a></p>
-</div>
 <div class="figure align-center" id="id1" style="width: 95%">
-<a class="reference internal image-reference" href="../../_images/US_map_text.png"><img alt="../../_images/US_map_text.png" src="../../_images/US_map_text.png" style="width: 95%;" /></a>
-<p class="caption"><span class="caption-text"><a class="reference external" href="http://s3-eu-west-1.amazonaws.com/textract.samples/US_Weather_map_19150814.jpg">US analysis map sample image</a>, alongside the word blocks produced by Textract.</span></p>
+<a class="reference internal image-reference" href="../../_images/Text10.png"><img alt="../../_images/Text10.png" src="../../_images/Text10.png" style="width: 95%;" /></a>
+<p class="caption"><span class="caption-text"><a class="reference external" href="http://s3-eu-west-1.amazonaws.com/textract.samples/US_Weather_map_19150814.jpg">US analysis map sample image</a>, alongside the word blocks produced by Textract. Red and blue chequerboard patterns would show tables Textract has found on the page (but no tables were found for this sample).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -107,6 +101,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
 <li class="toctree-l1"><a class="reference internal" href="show_output.html">Textract output (as JSON)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_text.html">Script to plot comparison figure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="polygons.html">A closer look at the block layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">A closer look at the tables detected</a></li>
 </ul>
 </div>
 </div>
@@ -127,7 +122,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
           <a href="run_textract.html" title="Script to run Textract"
              >next</a> |</li>
         <li class="right" >
-          <a href="../Argentine_DWR/plot_polygons.html" title="Plot the block layout"
+          <a href="../Argentine_DWR/plot_tables.html" title="Plot the table layout"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Textract tests</a> &#187;</li> 
       </ul>

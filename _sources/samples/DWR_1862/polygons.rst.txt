@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/DWR_1862/DWR_1862.png
+.. figure:: ../../../analyses/samples/DWR_1862/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

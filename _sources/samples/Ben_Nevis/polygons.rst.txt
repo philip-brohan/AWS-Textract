@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/Ben_Nevis/Ben_Nevis.png
+.. figure:: ../../../analyses/samples/Ben_Nevis/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

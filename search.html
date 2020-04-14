@@ -1,28 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Search &#8212; Testing AWS Textract for weather data rescue</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/searchtools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="#" />
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
+  <script src="searchindex.js" defer></script>
    
 
   </head><body>
@@ -45,25 +39,21 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Getting started with Textract</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="samples/Second_order/text.html">Sample from the UK Second Order Stations Books</a></li>
-<li class="toctree-l1"><a class="reference internal" href="samples/Observatories/text.html">Sample from the UK Observatories Year Book</a></li>
-<li class="toctree-l1"><a class="reference internal" href="samples/DWR_1862/text.html">Sample from the UK Daily Weather Reports (1862)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="samples/Farragut/text.html">Sample from the logbook of USS Farragut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/Ben_Nevis/text.html">Sample from the Weatherrescue Ben Nevis project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/Second_order/text.html">Sample from the UK Second Order Stations Books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="samples/Argentine_DWR/text.html">Sample from the Argentine Daily Weather Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/Observatories/text.html">Sample from the UK Observatories Year Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/10_year_rainfall/text.html">Sample from the UK 10-year rainfall sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/DWR_1901/text.html">Sample from the UK Daily Weather Reports (1901)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples/DWR_1862/text.html">Sample from the UK Daily Weather Reports (1862)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="samples/Jeannette/text.html">Sample from the logbook of USS Jeannette</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="samples/Ben_Nevis/text.html">Sample from the Weatherrescue Ben Nevis project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="samples/Argentine_DWR/text.html">Sample from the Argentine Daily Weather Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="samples/US_map/text.html">Sample from the US Manual Analysis maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="samples/IDWR/text.html">Sample from the Indian Daily Weather Reports</a></li>
-<li class="toctree-l1"><a class="reference internal" href="samples/DWR_1901/text.html">Sample from the UK Daily Weather Reports (1901)</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="image_processing/Ben_Nevis/modified.html">Modified Ben Nevis sample image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="image_processing/Argentine_DWR/modified.html">Modified Argentine DWR sample image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="image_processing/US_map/modified.html">Modified US map sample image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="image_processing/IDWR/modified.html">Modified Indian Daily Weather Report sample image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="image_processing/DWR_1901/modified.html">Modified DWR_1901 sample image</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="OCR-weatherrescue/months.html">OCR-weatherrescue benchmark comparison</a></li>
@@ -91,7 +81,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
             
   <h1 id="search-documentation">Search</h1>
   <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
+  <script>$('#fallback').hide();</script>
   <p>
     Please activate JavaScript to enable the search
     functionality.
@@ -104,7 +94,7 @@ Please <a href="https://github.com/philip-brohan/AWS-Textract/issues/new">raise 
     containing fewer words won't appear in the result list.
   </p>
   <form action="" method="get">
-    <input type="text" name="q" value="" />
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" />
     <input type="submit" value="search" />
     <span id="search-progress" style="padding-left: 10px"></span>
   </form>

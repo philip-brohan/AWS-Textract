@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/Observatories/Observatories.png
+.. figure:: ../../../analyses/samples/Observatories/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

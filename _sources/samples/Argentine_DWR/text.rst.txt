@@ -1,16 +1,14 @@
 Sample from the Argentine Daily Weather Reports
 ===============================================
 
-.. seealso:: This sample :doc:`works much better after image adjustment <../../image_processing/Argentine_DWR/modified>`
-
 Daily Weather Reports are collections of telegraph observations used to make daily synoptic weathermaps. Argentina started producing them in 1902, and their series has the advantage of being printed. The Argentine DWRs are being `worked on through the Copernicus Data Rescue Service <http://brohan.org/station-data/sources/Argentine_DWR/index.html>`_, but the bulk of them are not yet digitised.
 
-.. figure:: ../../../analyses/samples/Argentine_DWR/Argentine_DWR_text.png
+.. figure:: ../../../analyses/samples/Argentine_DWR/Text.png
    :width: 95%
    :align: center
    :figwidth: 95%
 
-   `Argentine DWR sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/103.jpg>`_, alongside the text blocks produced by Textract.
+   `Argentine DWR sample image <http://s3-eu-west-1.amazonaws.com/textract.samples/103.jpg>`_, alongside the text blocks produced by Textract. Red and blue chequerboard patterns show tables Textract has found on the page.
 
 |	      
    
@@ -23,5 +21,6 @@ Daily Weather Reports are collections of telegraph observations used to make dai
    show_output
    plot_text
    polygons
+   tables
 
 
