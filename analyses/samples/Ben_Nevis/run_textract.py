@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Run Textract on the Ben Nevis sample image
+# Run Textract on the Argentine DWR sample image
 
 import pickle
 import boto3
@@ -12,7 +12,8 @@ with open("../../../samples/1901-01.jpg",'rb') as jf:
 
 # Analyze the document
 client = boto3.client('textract')
-response = client.detect_document_text(Document={'Bytes': ie})
+response = client.analyze_document(Document={'Bytes': ie},
+                                   FeatureTypes=['TABLES'])
 
 # Save the resulting JSON
 pickle.dump(response, open( "detection.pkl", "wb" ) )

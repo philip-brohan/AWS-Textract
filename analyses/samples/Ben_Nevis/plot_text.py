@@ -54,6 +54,19 @@ def b2t(dct):
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:
+    if block['BlockType'] == 'CELL':
+        ccolour=(0,0,1)
+        if (block['ColumnIndex']+block['RowIndex'])%2==1:
+            ccolour=(1,0,0)
+        pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
+                                      closed=True,
+                                      edgecolor=(0,0,0),
+                                      facecolor=ccolour,
+                                      fill=True,
+                                      linewidth=0.1,
+                                      alpha=0.2,
+                                      zorder=100)
+        ax_result.add_patch(pp)
     if 'Text' in block and block['BlockType']=='WORD':
        # Polygon
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
@@ -89,6 +102,5 @@ for block in textract['Blocks']:
         ax_result.add_patch(pp)        
     zorder=zorder+10
     
-
 # Draw the image
-fig.savefig('Ben_Nevis_text.png')
+fig.savefig('Text.png')

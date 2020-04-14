@@ -54,16 +54,30 @@ def b2t(dct):
 # Draw all the blocks
 zorder=0
 for block in textract['Blocks']:
+    if block['BlockType'] == 'CELL':
+        ccolour=(0,0,1)
+        if (block['ColumnIndex']+block['RowIndex'])%2==1:
+            ccolour=(1,0,0)
+        pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
+                                      closed=True,
+                                      edgecolor=(0,0,0),
+                                      facecolor=ccolour,
+                                      fill=True,
+                                      linewidth=0.1,
+                                      alpha=0.2,
+                                      zorder=100)
+        ax_result.add_patch(pp)
+
     if 'Text' in block and  block['BlockType']=='WORD':
        # Polygon
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
                                       edgecolor=(0,0,1,1),
-                                      facecolor=(0,0,1,0.2),
+                                      facecolor=(0,0,1,1),
                                       fill=True,
                                       linewidth=0.2,
                                       alpha=0.2,
-                                      zorder=zorder)
+                                      zorder=150)
         ax_result.add_patch(pp)
        # Text
         txt_centroid=b2t(block['Geometry']['BoundingBox'])
@@ -76,7 +90,8 @@ for block in textract['Blocks']:
                        fontsize=28,
                        verticalalignment='center',
                        horizontalalignment='center',
-                       rotation=angle)
+                       rotation=angle,
+                       zorder=200)
     if block['BlockType']=='PAGE':
         pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                       closed=True,
@@ -85,10 +100,8 @@ for block in textract['Blocks']:
                                       fill=True,
                                       linewidth=0.2,
                                       alpha=0.05,
-                                      zorder=zorder)
-        ax_result.add_patch(pp)        
-    zorder=zorder+10
-    
+                                      zorder=50)
+        ax_result.add_patch(pp)            
 
 # Draw the image
-fig.savefig('Argentine_DWR_text.png')
+fig.savefig('Text.png')

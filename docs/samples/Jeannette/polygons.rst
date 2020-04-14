@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/Jeannette/Jeannette.png
+.. figure:: ../../../analyses/samples/Jeannette/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

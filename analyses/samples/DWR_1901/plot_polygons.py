@@ -61,6 +61,9 @@ def b2p(dct):
 # Draw all the blocks
 zorder=10
 for block in textract['Blocks']:
+    if block['BlockType'] == 'CELL': continue
+    if block['BlockType'] == 'PAGE': continue
+    if block['BlockType'] == 'TABLE': continue
    # Bounding box
     bp=matplotlib.patches.Polygon(b2p(block['Geometry']['BoundingBox']),
                                   closed=True,
@@ -71,7 +74,7 @@ for block in textract['Blocks']:
                                   alpha=0.2,
                                   zorder=zorder)
     # Don't bother to plot these - same as the polygons.
-    #if zorder>10: ax_result.add_patch(bp) # Skip 1st one - full page
+    #ax_result.add_patch(bp) # Skip 1st one - full page
    # Polygon
     pp=matplotlib.patches.Polygon(d2p(block['Geometry']['Polygon']),
                                   closed=True,
@@ -81,8 +84,8 @@ for block in textract['Blocks']:
                                   linewidth=0.2,
                                   alpha=0.2,
                                   zorder=zorder)
-    if zorder>10: ax_result.add_patch(pp) # Skip 1st one - full page
+    ax_result.add_patch(pp) # Skip 1st one - full page
     zorder=zorder+10
 
 # Draw the image
-fig.savefig('DWR_1901.png')
+fig.savefig('Polygons.png')

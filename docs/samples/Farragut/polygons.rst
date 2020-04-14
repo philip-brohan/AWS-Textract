@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/Farragut/Farragut.png
+.. figure:: ../../../analyses/samples/Farragut/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

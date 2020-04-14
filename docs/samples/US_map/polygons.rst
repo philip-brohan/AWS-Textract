@@ -1,7 +1,7 @@
 A closer look at the block layout
 =================================
 
-.. figure:: ../../../analyses/samples/US_map/US_map.png
+.. figure:: ../../../analyses/samples/US_map/Polygons.png
    :width: 95%
    :align: center
    :figwidth: 95%

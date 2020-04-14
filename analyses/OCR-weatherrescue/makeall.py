@@ -5,6 +5,7 @@
 import subprocess
 import os.path
 import time
+#import sys
 
 for year in range(1898,1905):
     for month in range(1,13):
@@ -17,11 +18,13 @@ for year in range(1898,1905):
                                 "--opimg=%04d-%02d.png " % (year,month) +
                                 "--opstats=%04d-%02d.pkl " % (year,month) +
                                 "--colour=1.0 "       +
-                                "--contrast=0.1 "     +
+                                "--contrast=1.0 "     +
                                 "--brightness=1.0 "   +
-                                "--sharpness=0.0 ",
+                                "--sharpness=1.0 ",
                             stdout=subprocess.PIPE, 
                             stderr=subprocess.PIPE, shell=True)
         (out, err) = proc.communicate()
-        time.sleep(10)
+        #print(out)
+        #print(err)
+        time.sleep(1)
                     

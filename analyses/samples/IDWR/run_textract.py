@@ -12,7 +12,8 @@ with open("../../../samples/idwr1893-v1_0021.jpg",'rb') as jf:
 
 # Analyze the document
 client = boto3.client('textract')
-response = client.detect_document_text(Document={'Bytes': ie})
+response = client.analyze_document(Document={'Bytes': ie},
+                                       FeatureTypes=['TABLES'])
 
 # Save the resulting JSON
 pickle.dump(response, open( "detection.pkl", "wb" ) )

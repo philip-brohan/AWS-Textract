@@ -3,7 +3,7 @@ Small print
 
 This is not a paper, or a report. Instead it borrows a standard approach from the modern software industry: it's a GitHub repository. The repository contains a collection of `reStructuredText <https://en.wikipedia.org/wiki/ReStructuredText>`_ which can be converted, using the `Sphinx documentation generator <https://en.wikipedia.org/wiki/Sphinx_(documentation_generator)>`_, into a website or PDF document.
 
-This is version 0.0.3, dated at 2019-04-16. If you have found a problem with it, or want to make a comment, please `raise an issue <https://github.com/philip-brohan/AWS-Textract/issues/new>`_.
+This is version 0.0.4, dated at 2020-04-14. If you have found a problem with it, or want to make a comment, please `raise an issue <https://github.com/philip-brohan/AWS-Textract/issues/new>`_.
 
 Authors and acknowledgements
 ----------------------------
@@ -18,6 +18,6 @@ All blame should go to the maintainer; credit is more widely distributed:
 
 Contributions to this work came from:
 
-* `Amazon <https://aws.amazon.com/textract/>`_ - who allowed free access to the beta-test of their Textract service.
+* `Amazon <https://aws.amazon.com/textract/>`_ - who went to some trouble to make their Textract service, work on these types of documents.
  
 Note that appearance on this list does not mean that the person or organisation named endorses this work, agrees with any of it, or even knows of its existence.

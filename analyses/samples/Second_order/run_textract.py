@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Run Textract on the Second-order station sample image
+# Run Textract on the Second Order stations sample image
 
 import pickle
 import boto3
@@ -12,7 +12,8 @@ with open("../../../samples/Margate_1891_02.jpg",'rb') as jf:
 
 # Analyze the document
 client = boto3.client('textract')
-response = client.detect_document_text(Document={'Bytes': ie})
+response = client.analyze_document(Document={'Bytes': ie},
+                                   FeatureTypes=['TABLES'])
 
 # Save the resulting JSON
 pickle.dump(response, open( "detection.pkl", "wb" ) )
