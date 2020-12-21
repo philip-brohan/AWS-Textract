@@ -26,6 +26,11 @@ fig=Figure(figsize=((im.size[0]/100)*1.04,
        frameon=False,
        subplotpars=None,
        tight_layout=None)
+# Make the background white
+ax_full=fig.add_axes([0,0,1,1])
+ax_full.add_patch(
+    matplotlib.patches.Rectangle((0, 0), 1, 1, fill=True, facecolor="white")
+)
 ax_original=fig.add_axes([0.02,0.02,0.96,0.96],label='original')
 ax_result=fig.add_axes([0.02,0.02,0.96,0.96],label='result')
 # Matplotlib magic

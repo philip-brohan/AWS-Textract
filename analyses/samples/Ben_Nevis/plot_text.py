@@ -24,8 +24,14 @@ fig=Figure(figsize=((1*im.size[0]/100)*1.04,
        frameon=False,
        subplotpars=None,
        tight_layout=None)
+# Make the background white
+ax_full=fig.add_axes([0,0,1,1])
+ax_full.add_patch(
+    matplotlib.patches.Rectangle((0, 0), 1, 1, fill=True, facecolor="white")
+)
+
 ax_original=fig.add_axes([0.02,0.51,0.96,0.47])
-ax_result=fig.add_axes([0.02,0.02,0.96,0.47])
+ax_result=fig.add_axes([0.02,0.02,0.96,0.47],facecolor='white')
 # Matplotlib magic
 canvas=FigureCanvas(fig)
 # Turn off the axis tics
@@ -103,4 +109,4 @@ for block in textract['Blocks']:
     zorder=zorder+10
     
 # Draw the image
-fig.savefig('Text.png')
+fig.savefig('Text.png',facecolor=fig.get_facecolor(), edgecolor='none')

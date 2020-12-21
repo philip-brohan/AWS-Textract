@@ -1,0 +1,11 @@
+name: textract
+channels:
+  - default
+dependencies:
+  - python=3.7
+  - boto3=1.16.*
+  - pillow=8.0.*
+  - matplotlib=3.3.*
+  - numpy=1.19.*
+# Optional, code formatter
+  - black
